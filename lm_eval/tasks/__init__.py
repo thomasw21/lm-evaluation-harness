@@ -50,6 +50,7 @@ from . import blimp
 from . import asdiv
 from . import gsm8k
 from . import storycloze
+from . import sst2_stanford
 
 ########################################
 # Translation tasks
@@ -92,6 +93,7 @@ TASK_REGISTRY = {
     "qqp": glue.QQP,
     # "stsb": glue.STSB, # not implemented yet
     "sst": glue.SST,
+    "sst_stanford": sst2_stanford.StanfordSST2,
     "wnli": glue.WNLI,
     # SuperGLUE
     "boolq": superglue.BoolQ,
