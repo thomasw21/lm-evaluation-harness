@@ -7,8 +7,9 @@ The Stanford Sentiment Treebank is the first corpus with fully labeled parse tre
 
 Homepage: https://nlp.stanford.edu/sentiment/index.html
 """
-from lm_eval.base import Task
-
+from lm_eval.base import Task, rf
+from lm_eval.metrics import mean
+from lm_eval.utils import general_detokenize
 
 _CITATION = """
 @inproceedings{socher-etal-2013-recursive,
