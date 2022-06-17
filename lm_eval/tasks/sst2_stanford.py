@@ -70,11 +70,11 @@ class StanfordSST2(Task):
 
     def doc_to_target(self, doc):
         label = self.label_to_binary_label(doc)
-        return " {}".format({1: "positive", 0: "negative"}[label])
+        return " {}".format({1: "Positive", 0: "Negative"}[label])
 
     def construct_requests(self, doc, ctx):
-        ll_positive, _ = rf.loglikelihood(ctx, " positive")
-        ll_negative, _ = rf.loglikelihood(ctx, " negative")
+        ll_positive, _ = rf.loglikelihood(ctx, " Positive")
+        ll_negative, _ = rf.loglikelihood(ctx, " Negative")
         return ll_positive, ll_negative
 
     def process_results(self, doc, results):

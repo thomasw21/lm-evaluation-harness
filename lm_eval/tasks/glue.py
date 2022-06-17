@@ -79,11 +79,11 @@ class CoLA(Task):
         return doc["sentence"]
 
     def doc_to_target(self, doc):
-        return " {}".format({1: "yes", 0: "no"}[doc["label"]])
+        return " {}".format({1: "Yes", 0: "No"}[doc["label"]])
 
     def construct_requests(self, doc, ctx):
-        ll_true, _ = rf.loglikelihood(ctx, " yes")
-        ll_false, _ = rf.loglikelihood(ctx, " no")
+        ll_true, _ = rf.loglikelihood(ctx, " Yes")
+        ll_false, _ = rf.loglikelihood(ctx, " No")
         return ll_true, ll_false
 
     def process_results(self, doc, results):
@@ -127,11 +127,11 @@ class SST(Task):
         )
 
     def doc_to_target(self, doc):
-        return " {}".format({1: "positive", 0: "negative"}[doc["label"]])
+        return " {}".format({1: "Positive", 0: "Negative"}[doc["label"]])
 
     def construct_requests(self, doc, ctx):
-        ll_positive, _ = rf.loglikelihood(ctx, " positive")
-        ll_negative, _ = rf.loglikelihood(ctx, " negative")
+        ll_positive, _ = rf.loglikelihood(ctx, " Positive")
+        ll_negative, _ = rf.loglikelihood(ctx, " Negative")
         return ll_positive, ll_negative
 
     def process_results(self, doc, results):
@@ -253,11 +253,11 @@ class QNLI(Task):
     def doc_to_target(self, doc):
         # True = entailment
         # False = not entailment
-        return " {}".format({0: "yes", 1: "no"}[doc["label"]])
+        return " {}".format({0: "Yes", 1: "No"}[doc["label"]])
 
     def construct_requests(self, doc, ctx):
-        ll_yes, _ = rf.loglikelihood(ctx, " yes")
-        ll_no, _ = rf.loglikelihood(ctx, " no")
+        ll_yes, _ = rf.loglikelihood(ctx, " Yes")
+        ll_no, _ = rf.loglikelihood(ctx, " No")
         return ll_yes, ll_no
 
     def process_results(self, doc, results):
@@ -407,11 +407,11 @@ class MRPC(Task):
         )
 
     def doc_to_target(self, doc):
-        return " {}".format(yesno(doc["label"]))
+        return " {}".format(yesno(doc["label"]).capitalize())
 
     def construct_requests(self, doc, ctx):
-        ll_yes, _ = rf.loglikelihood(ctx, " yes")
-        ll_no, _ = rf.loglikelihood(ctx, " no")
+        ll_yes, _ = rf.loglikelihood(ctx, " Yes")
+        ll_no, _ = rf.loglikelihood(ctx, " No")
         return ll_yes, ll_no
 
     def process_results(self, doc, results):
@@ -459,11 +459,11 @@ class QQP(Task):
         )
 
     def doc_to_target(self, doc):
-        return " {}".format(yesno(doc["label"]))
+        return " {}".format(yesno(doc["label"]).capitalize())
 
     def construct_requests(self, doc, ctx):
-        ll_yes, _ = rf.loglikelihood(ctx, " yes")
-        ll_no, _ = rf.loglikelihood(ctx, " no")
+        ll_yes, _ = rf.loglikelihood(ctx, " Yes")
+        ll_no, _ = rf.loglikelihood(ctx, " No")
         return ll_yes, ll_no
 
     def process_results(self, doc, results):

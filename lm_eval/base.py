@@ -301,7 +301,7 @@ class BaseLM(LM):
 
                 # Slice to original seq length
                 contlen = len(cont_toks)
-                logits = logits[inplen - contlen : inplen].unsqueeze(
+                logits = logits[inplen - contlen: inplen].unsqueeze(
                     0
                 )  # [1, seq, vocab]
 
