@@ -65,8 +65,11 @@ class StanfordSST2(Task):
             general_detokenize(doc["sentence"]),
         )
 
+    def label_to_binary_label(self, doc):
+        return int(doc["label"] > 0.5)
+
     def doc_to_target(self, doc):
-        label = int(doc["label"] > 0.5)
+        label = self.label_to_binary_label(doc)
         return " {}".format({1: "positive", 0: "negative"}[label])
 
     def construct_requests(self, doc, ctx):
@@ -77,7 +80,7 @@ class StanfordSST2(Task):
     def process_results(self, doc, results):
         ll_positive, ll_negative = results
         pred = ll_positive > ll_negative
-        gold = doc["label"]
+        gold = self.label_to_binary_label(doc)
         return {"acc": pred == gold}
 
     def higher_is_better(self):
